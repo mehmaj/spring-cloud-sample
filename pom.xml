@@ -15,6 +15,7 @@
         <module>gateway</module>
         <module>config-server</module>
         <module>micro-service-1</module>
+        <module>micro-service-1-second-instance</module>
         <module>micro-service-2</module>
         <module>feign-service</module>
     </modules>
