@@ -30,6 +30,7 @@ public class EurekaClientApplication {
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }
+
     public static void main(String[] args) {
         SpringApplication.run(EurekaClientApplication.class, args);
     }
@@ -47,7 +48,7 @@ class ServiceInstanceRestController {
 
     @RequestMapping("/")
     @ResponseBody
-    public ResponseEntity<String> home() {
+    public ResponseEntity home() {
         return new ResponseEntity<>(microServiceClient.home(message), HttpStatus.OK);
     }
 
@@ -56,4 +57,6 @@ class ServiceInstanceRestController {
             @PathVariable String applicationName) {
         return this.discoveryClient.getInstances(applicationName);
     }
+
 }
+

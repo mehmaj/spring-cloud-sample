@@ -9,15 +9,18 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
+        <properties.docker.prefix>rhino</properties.docker.prefix>
+        <spring.boot.version>2.1.2.RELEASE</spring.boot.version>
     </properties>
     <modules>
         <module>eureka-server</module>
         <module>gateway</module>
         <module>config-server</module>
         <module>micro-service-1</module>
-        <module>micro-service-1-second-instance</module>
+        <module>micro-service-1-prime</module>
         <module>micro-service-2</module>
         <module>feign-service</module>
+        <module>hystrix</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -25,6 +28,12 @@
         <version>2.1.2.RELEASE</version>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
     <groupId>cloud-sample</groupId>
     <artifactId>cloud-sample</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -39,4 +48,21 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.9</version>
+                <configuration>
+                    <repository>${properties.docker.prefix}/${project.artifactId}</repository>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>

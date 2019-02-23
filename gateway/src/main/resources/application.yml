@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: gateway
+server:
+  port: 80
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: "*"

@@ -1,4 +1,4 @@
-package com.cloud.micro_service_1_seconde_instance;
+package com.cloud.micro_service_1_prime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

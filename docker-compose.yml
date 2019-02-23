@@ -1,0 +1,54 @@
+#hystrix:
+#  image: rhino/eureka-server
+#  ports:
+#    - "7979:7979"
+#  links:
+#    - gateway
+#    - eureka-server:
+version: '3.3'
+services:
+    eureka-server:
+      image: rhino/eureka-server
+      ports:
+        - "8761:8761"
+
+    config-server:
+      image: rhino/config-server
+      ports:
+        - "8888:8888"
+      depends_on:
+        - eureka-server
+    gateway:
+      image: rhino/gateway
+      ports:
+        - "80:80"
+      depends_on:
+            - eureka-server
+            - config-server
+            - micro-service-1
+            - micro-service-1-prime
+            - micro-service-2
+    micro-service-1:
+      image: rhino/micro-service-1
+      depends_on:
+            - eureka-server
+            - config-server
+            - feing
+    micro-service-1-prime:
+      image: rhino/micro-service-1-prime
+      depends_on:
+          - eureka-server
+          - config-server
+          - feing
+    micro-service-2:
+      image: rhino/micro-service-2
+      depends_on:
+          - eureka-server
+          - config-server
+    feing:
+      image: rhino/feign-service
+      ports:
+          - "7004:7004"
+      depends_on:
+        - eureka-server
+        - config-server
