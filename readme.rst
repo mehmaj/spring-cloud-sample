@@ -29,7 +29,9 @@ Modules are:
 
     -use spotify docker maven plugin to automatically build docker images for each module
 
+
     -after all use docker composer to run all modules at once
+
 
     -next step:
          kubernetes serverless architecture
