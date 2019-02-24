@@ -18,7 +18,7 @@ Modules are:
     ->Feign
         micro services talk to each other using feign
 
-    ->Hystrix | Hystrix dashboard
+    ->hystrix | hystrix-dashboard
         use hystrix to monitor fault tolerance of each endpoint
 
     ->micro-service-1
